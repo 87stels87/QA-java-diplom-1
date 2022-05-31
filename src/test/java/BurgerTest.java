@@ -34,14 +34,14 @@ import static org.junit.Assert.assertEquals;
         @Test
         public void testSetBuns (){
             burger.setBuns(bun);
-            Assert.assertEquals("Variables are not equal", burger.bun, bun);
+            Assert.assertEquals("Объекты не одинаковы", burger.bun, bun);
 
         }
 
         @Test
         public void testAddIngredient (){
             burger.addIngredient(ingredient);
-            Assert.assertTrue("Object is not found", burger.ingredients.contains(ingredient));
+            Assert.assertTrue("Объект не найден", burger.ingredients.contains(ingredient));
         }
 
         @Test
@@ -56,7 +56,7 @@ import static org.junit.Assert.assertEquals;
             burger.addIngredient(ingredient);
             burger.addIngredient(ingredient);
             burger.moveIngredient(0, 1);
-            Assert.assertEquals("Element is not equal", ingredient, burger.ingredients.get(1));
+            Assert.assertEquals("Элемент не равен", ingredient, burger.ingredients.get(1));
         }
 
         @Test
@@ -67,24 +67,26 @@ import static org.junit.Assert.assertEquals;
             burger.addIngredient(ingredient);
             float actualPrice = burger.getPrice();
             float expectedPrice = 125.0F;
-            Assert.assertEquals("Price is incorrect", expectedPrice, actualPrice, 0);
+            Assert.assertEquals("Цена не корректна", expectedPrice, actualPrice, 0);
         }
-/*
         @Test
         public void testGetReceipt () {
-
-            Mockito.when(bun.getName()).thenReturn("Краторная булка");
+            Burger burger = new Burger();
+            burger.bun = bun;
+            burger.ingredients.add(ingredient);
+            Mockito.when(bun.getName()).thenReturn("bun_Name");
             Mockito.when(ingredient.getType()).thenReturn(IngredientType.SAUCE);
-            Mockito.when(ingredient.getName()).thenReturn("Соус традиционный галактический");
-
-            burger.setBuns(bun);
-            burger.addIngredient(ingredient);
+            Mockito.when(ingredient.getName()).thenReturn("Ingredient_name");
+            Mockito.when(burger.getPrice()).thenReturn(1f);
+            String expected = String.format("(==== %s ====)%n" +
+                            "= %s %s =%n" +
+                            "(==== %s ====)%n" +
+                            "%nPrice: %f%n",
+                    bun.getName(), ingredient.getType().toString().toLowerCase(),
+                    ingredient.getName(), bun.getName(), burger.getPrice());
             String actual = burger.getReceipt();
-
-            String expected = "(==== Краторная булка ====)\r\n" + "= sauce Соус традиционный галактический =\r\n" + "(==== Краторная булка ====)\r\n" + "\r\nPrice: 0,000000\r\n";
-            Assert.assertEquals(expected, actual);
-
-        }*/
+            assertEquals(expected, actual);
+        }
 
 
     }
