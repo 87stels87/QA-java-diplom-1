@@ -1,5 +1,5 @@
 import org.junit.Test;
-import praktikum.Bun;
+
 import praktikum.Ingredient;
 import praktikum.IngredientType;
 
